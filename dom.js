@@ -1,10 +1,10 @@
 //Factory pattern for creating dom els
 function Dom(){
   var self = this;
-
+  
+  var tags = [ "A", "BASE",  "BASEFONT",  "BIG",  "BLOCKQUOTE",  "BODY",  "BR",  "B",  "CAPTION",  "CENTER",  "CITE",  "CODE",  "DD",  "DFN",  "DIR",  "DIV",  "DL",  "DT",  "EM",  "FONT",  "FORM",  "H1",  "H2",  "H3",  "H4",  "H5",  "H6",  "HEAD",  "HR",  "HTML",  "IMG",  "INPUT",  "ISINDEX",  "I",  "KBD",  "LINK",  "LI",  "MAP",  "MENU",  "META",  "OL",  "OPTION",  "PARAM",  "PRE",  "P",  "SAMP",  "SCRIPT",  "SELECT",  "SMALL",  "STRIKE",  "STRONG",  "STYLE",  "SUB",  "SUP",  "TABLE",  "TD",  "TEXTAREA",  "TH",  "TITLE",  "TR",  "TT",  "UL",  "U",  "VAR"];
+  
   function cssString(styles){
-    var tags = [ "BASE",  "BASEFONT",  "BIG",  "BLOCKQUOTE",  "BODY",  "BR",  "B",  "CAPTION",  "CENTER",  "CITE",  "CODE",  "DD",  "DFN",  "DIR",  "DIV",  "DL",  "DT",  "EM",  "FONT",  "FORM",  "H1",  "H2",  "H3",  "H4",  "H5",  "H6",  "HEAD",  "HR",  "HTML",  "IMG",  "INPUT",  "ISINDEX",  "I",  "KBD",  "LINK",  "LI",  "MAP",  "MENU",  "META",  "OL",  "OPTION",  "PARAM",  "PRE",  "P",  "SAMP",  "SCRIPT",  "SELECT",  "SMALL",  "STRIKE",  "STRONG",  "STYLE",  "SUB",  "SUP",  "TABLE",  "TD",  "TEXTAREA",  "TH",  "TITLE",  "TR",  "TT",  "UL",  "U",  "VAR"];
-
     var str = '';
     for(var style in styles){
       if(has(style.toUpperCase(), tags)) continue;
@@ -23,28 +23,29 @@ function Dom(){
   }
 
   this.create = function(type, props){
-
-    var el = document.createElement(type);
+    var el = document.createElement(type), value, child;
     if(props){
       if(props.styles){
         el.style.cssText = cssString(props.styles);
       } 
-      if(props.text){
-        el.innerText = props.text;
-      }
-      if(props.html){
-        el.innerHTML = props.html;
-      }
       for(var prop in props){
-        if(prop == "styles" || prop == "html" || prop == "text") continue;
-        el[prop] = props[prop];
+        if(prop == "styles") continue;
+        value = props[prop];
+        prop = (prop === "text" ? "innerText" : prop);
+        prop = (prop === "html" ? "innerHTML" : prop);
+        el[prop] = value;
+
+        if(has(prop.toUpperCase(), tags)){
+          console.log('we have a nested element');
+          child = this.create(prop, value);
+          el.appendChild(child);
+        }
       }
     }
     return el;
   };
 
   this.createTable = function(props){
-
     var theadData = props.thead,
         tbodyData = props.tbody,
         tfootData = props.foot || props.footer;
