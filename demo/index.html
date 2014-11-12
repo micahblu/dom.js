@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Dom.js Demo</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="js/md5.js"></script>
+    <script src="js/dom.js"></script>
+  </head>
+  <body>
+    <div id="page">
+      <div class="row">
+        <header class="large-12 columns">
+          <h1 align="center">Dom.js</h1>
+          <p align="center">A thin DOM abstraction layer for dynamically creating dom elements from objects</p>
+        </header>
+        <hr />
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+    	    <pre>
+            <code class="javascript">
+       	    var email = "micahblu@gmail.com";
+            var name = "Mr Blu";
+       	    var avatarUrl = 'http://www.gravatar.com/avatar/' + md5(email) + '?s=200';
+
+      	    var badge = Dom.create("div", {
+      	      img: { src: avatarUrl },
+              p: { text: name }
+            });
+            </code>
+          </pre>
+        </div>
+      </div>
+      
+      <h2 align="center">Generates</h2>
+
+
+      <div class="row">
+        <div class="medium-9 columns">
+          <div class="panel">
+            <pre>
+              <code id="output" class="html">
+              </code>
+            </pre>
+          </div>
+        </div>
+        <div class="medium-3 columns">
+          <div id="gravatar"></div>
+          <script>
+          var email = "micahblu@gmail.com";
+          var name = "Mr Blu";
+          var avatarUrl = 'http://www.gravatar.com/avatar/' + hex_md5(email) + '?s=220';
+          var gravatarEl = document.getElementById("gravatar");
+
+          var badge = Dom.create("div", {
+            img: { src: avatarUrl },
+            p: { text: name }
+          });
+          document.getElementById('output').innerText = "<div>\n  " + badge.innerHTML.replace('>', '>\n  ') + "\n</div>";
+          gravatarEl.appendChild(badge);
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

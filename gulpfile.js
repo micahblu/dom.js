@@ -1,5 +1,6 @@
-var gulp = require("gulp");
-var uglify = require("gulp-uglify");
+var gulp = require('gulp'),
+		uglify = require("gulp-uglify"),
+    connect = require('gulp-connect');
 
 gulp.task('minify', function(){
   gulp.src('src/*.js')
@@ -7,4 +8,20 @@ gulp.task('minify', function(){
   .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('default', ['minify']);
+gulp.task('connect', function() {
+	connect.server({
+		root: 'demo/',
+		livereload: true
+	});
+});
+
+gulp.task('html', function(){
+	gulp.src('demo/*.html')
+	.pipe(connect.reload());
+});
+
+gulp.task('watch', function(){
+	gulp.watch(['demo/*.html'], ['html']);
+});
+
+gulp.task('default', ['minify', 'connect', 'watch']);
