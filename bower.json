@@ -1,0 +1,23 @@
+{
+  "name": "dom.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/micahblu/dom.js",
+  "authors": [
+    "Micah Blu <micahblu@gmail.com>"
+  ],
+  "description": "A thin DOM abstraction layer for creating dom elements from objects",
+  "main": "dist/dom.js",
+  "keywords": [
+    "dom",
+    "abstraction",
+    "layer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

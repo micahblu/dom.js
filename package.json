@@ -1,0 +1,27 @@
+{
+  "name": "dom.js",
+  "version": "0.0.1",
+  "description": "a simple dom creation tool",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/micahblu/dom.js"
+  },
+  "keywords": [
+    "dom",
+    "factory",
+    "create"
+  ],
+  "author": "micahblu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/micahblu/dom.js/issues"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-uglify": "^1.0.1"
+  }
+}

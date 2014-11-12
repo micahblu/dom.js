@@ -38,7 +38,6 @@
     function extend(obj /* , ...source */) {
       for (var i = 1; i < arguments.length; i++) {
         for (var key in arguments[i]) {
-          console.log(arguments[i]);
           if (Object.prototype.hasOwnProperty.call(arguments[i], key)) {
              obj[key] = arguments[i][key];
              obj[key] = (typeof arguments[i][key] === 'object' && arguments[i][key] ? extend(obj[key], arguments[i][key]) : arguments[i][key]);
