@@ -44,7 +44,6 @@ var form = Dom.create("div", {
 document.body.appendChild(form);
 ```
 
-## Why use it?
+## Uses
 
-I think the best use would be dynamically translating JSON objects from the server to views on the client end. You could use jQuery, but you'd have to translate it all to a string first, to the best of my knowledge. Also if you don't need all the other tools jQuery offers, than its a bit overkill for this simple task.
-
+The best use cases would be translating DOM like JSON responses from a server, most likely one powered by an MVC framework that produces JSON views.

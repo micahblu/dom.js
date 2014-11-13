@@ -5,8 +5,11 @@
   "authors": [
     "Micah Blu <micahblu@gmail.com>"
   ],
-  "description": "A thin DOM abstraction layer for creating dom elements from objects",
+  "description": "A thin DOM abstraction layer for dynamically creating dom elements from objects",
   "main": "dist/dom.js",
+  "ignore": [
+     "demo/"
+   ],
   "keywords": [
     "dom",
     "abstraction",

@@ -17,6 +17,7 @@
     var self = this;
   
     var tags = [ "A", "ARTICLE", "BASE",  "BASEFONT",  "BIG",  "BLOCKQUOTE",  "BODY",  "BR",  "B", "BUTTON",  "CAPTION",  "CENTER",  "CITE",  "CODE",  "DD",  "DFN",  "DIR",  "DIV",  "DL",  "DT",  "EM",  "FONT",  "FORM",  "HEADER", "H1",  "H2",  "H3",  "H4",  "H5",  "H6",  "HEAD",  "HR",  "HTML",  "IMG",  "INPUT",  "ISINDEX",  "I",  "KBD",  "LINK",  "LI",  "MAP",  "MENU",  "META",  "OL",  "OPTION",  "PARAM",  "PRE",  "P",  "SAMP",  "SCRIPT", "SECTION",  "SELECT",  "SMALL",  "STRIKE",  "STRONG",  "STYLE",  "SUB",  "SUP",  "TABLE",  "TBODY",  "TD",  "TEXTAREA",  "TH", "THEAD",  "TITLE",  "TR",  "TT",  "UL",  "U",  "VAR"]; 
+    
     function cssString(styles){
       var str = '';
       for(var style in styles){
@@ -47,6 +48,35 @@
       return obj;
     }
 
+    var find = function(selector){
+      var matches = [],
+            match = {}
+            reg = new RegExp(selector.substr(1));
+
+      if(selector[0] !== '#' && selector[0] !== '.'){
+        return this.getElementsByTagName(selector);
+      }
+      var allNodes = getAllNodes(this);
+
+      for(var i=0, j=this.childNodes.length; i<j; i++){
+        if(this.childNodes[i].hasChildNodes()){
+          //this.childNodes[i].find = self.find;
+          //console.log(this.childNodes[i].find());
+          //matches.push(this.childNodes[i].find(selector));
+        }
+        if(selector[0] === '#' && selector.substr(1) === this.childNodes[i].id){
+          return this.childNodes[i];
+        } else if(selector[0] === '.' && reg.test(this.childNodes[i].id)) {
+          matches.push(this.childNodes[i]);
+        } 
+      }
+      return matches;
+    };
+
+    function getAllNodes(el){
+      
+    }
+
     var create = function(type, props){
       var el = document.createElement(type), value, child, i, j;
       if(props){
@@ -61,6 +91,8 @@
 
           //Atts
           el[prop] = value;
+          el.find = find;
+
           if(has(prop.toUpperCase(), tags)){
             
             if(value.nodes){

@@ -56,11 +56,41 @@
 
           var badge = Dom.create("div", {
             img: { src: avatarUrl },
-            p: { text: name }
+            p: { id: 'name', text: name }/*,
+            h4:{
+              text: "Claims"
+            },
+            ul: {
+              li: {
+                className: 'list-item',
+                nodes: [{
+                  text: "Best Tuna Sandwhich ever"
+                },
+                {
+                  text: "Avid guitar player"
+                },
+                {
+                  text: "Animal lover"
+                }]
+              }
+            }*/
           });
+
+          function updateGravatar(email){
+            badge.find('img')[0].src='http://www.gravatar.com/avatar/' + hex_md5(email) + '?s=220';
+          }
+          function updateName(name){
+            badge.find('#name').innerText=name;
+          }
+
           document.getElementById('output').innerText = "<div>\n  " + badge.innerHTML.replace('>', '>\n  ') + "\n</div>";
           gravatarEl.appendChild(badge);
           </script>
+          <hr />
+          <input type="text" placeholder="Email" onkeyup="updateGravatar(this.value)" />
+
+          <br />
+          <input type="text" placeholder="Name" onkeyup="updateName(this.value)" />
         </div>
       </div>
     </div>

@@ -5,7 +5,8 @@ var gulp = require('gulp'),
 gulp.task('minify', function(){
   gulp.src('src/*.js')
   .pipe(uglify())
-  .pipe(gulp.dest('dist/'));
+  .pipe(gulp.dest('dist/'))
+  .pipe(gulp.dest('demo/js/'));
 });
 
 gulp.task('connect', function() {
@@ -22,6 +23,7 @@ gulp.task('html', function(){
 
 gulp.task('watch', function(){
 	gulp.watch(['demo/*.html'], ['html']);
+	gulp.watch(['src/*.js'], ['minify']);
 });
 
 gulp.task('default', ['minify', 'connect', 'watch']);
