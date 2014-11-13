@@ -56,26 +56,20 @@
       if(selector[0] !== '#' && selector[0] !== '.'){
         return this.getElementsByTagName(selector);
       }
-      var allNodes = getAllNodes(this);
-
       for(var i=0, j=this.childNodes.length; i<j; i++){
-        if(this.childNodes[i].hasChildNodes()){
-          //this.childNodes[i].find = self.find;
-          //console.log(this.childNodes[i].find());
-          //matches.push(this.childNodes[i].find(selector));
+        if(this.childNodes[i].childNodes.length > 1){
+
+          matches = matches.concat(this.childNodes[i].find(selector));
         }
         if(selector[0] === '#' && selector.substr(1) === this.childNodes[i].id){
           return this.childNodes[i];
-        } else if(selector[0] === '.' && reg.test(this.childNodes[i].id)) {
+        } else if(selector[0] === '.' && reg.test(this.childNodes[i].className)) {
           matches.push(this.childNodes[i]);
         } 
       }
+      if(matches.length && matches.length === 1) matches = matches[0];
       return matches;
     };
-
-    function getAllNodes(el){
-      
-    }
 
     var create = function(type, props){
       var el = document.createElement(type), value, child, i, j;
@@ -97,7 +91,8 @@
             
             if(value.nodes){
               for(i=0, j=value.nodes.length; i<j; i++){
-                child = this.create(prop, extend((value.styles ? {styles: value.styles} : {}), value.nodes[i]));
+                value.className = value.className ? value.className : '';
+                child = this.create(prop, extend((value.styles ? {styles: value.styles, className: value.className} : {className: value.className}), value.nodes[i]));
                 el.appendChild(child);
               }
             }else{
