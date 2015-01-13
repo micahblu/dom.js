@@ -1,11 +1,11 @@
 {
   "name": "dom.js",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "homepage": "https://github.com/micahblu/dom.js",
   "authors": [
     "Micah Blu <micahblu@gmail.com>"
   ],
-  "description": "A thin DOM abstraction layer for dynamically creating dom elements from objects",
+  "description": "Create dynamic views on the fly",
   "main": "dist/dom.js",
   "ignore": [
      "demo/"

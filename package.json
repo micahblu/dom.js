@@ -1,8 +1,8 @@
 {
   "name": "dom.js",
-  "version": "0.0.1",
-  "description": "A thin DOM abstraction layer for dynamically creating dom elements from objects",
-  "main": "gulpfile.js",
+  "version": "0.0.3",
+  "description": "Create dynamic views on the fly",
+  "main": "dist/dom.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

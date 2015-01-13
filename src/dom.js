@@ -1,3 +1,9 @@
+/**
+ * Dom.js
+ *
+ * Create dynamic views on the fly
+ * @author micahblu
+ */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
@@ -50,8 +56,8 @@
 
     var find = function(selector){
       var matches = [],
-            match = {}
-            reg = new RegExp(selector.substr(1));
+          match = {}
+          reg = new RegExp(selector.substr(1));
 
       if(selector[0] !== '#' && selector[0] !== '.'){
         return this.getElementsByTagName(selector);
